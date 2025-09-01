@@ -7,8 +7,11 @@ import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
+import Error from "./pages/error/Error";
+import ServerError from "./pages/error/ServerError";
+import NotFound from "./pages/error/NotFound";
 
-const route = createBrowserRouter([
+export const route = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
@@ -31,6 +34,21 @@ const route = createBrowserRouter([
       { path: "cart", element: <Cart /> },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
+      {
+        path: "errors",
+        children: [
+          {
+            index: true,
+            element: <Error />,
+          },
+          {
+            path: "server-error",
+            element: <ServerError />,
+          },
+          { path: "not-found", element: <NotFound /> },
+        ],
+      },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);
